@@ -36,6 +36,7 @@ def bfs_search(initial_state):
 
     max_depth = max(level.values()) if level else 0
     max_width = max(level_count.values()) if level_count else 0
+    visited_count = len(visited)
 
     # Reconstruir camino
     path = []
@@ -46,4 +47,4 @@ def bfs_search(initial_state):
             current = parent[current]
         path.reverse()
 
-    return path, parent, max_depth, max_width
+    return path, parent, max_depth, max_width, visited_count

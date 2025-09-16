@@ -141,4 +141,6 @@ def export_search_tree(parent_dict, solution_path, filename="bfs_tree.graphml"):
     os.makedirs(export_dir, exist_ok=True)
     export_path = os.path.join(export_dir, filename)
     nx.write_graphml(G, export_path)
-    print(f"Árbol de búsqueda exportado en {export_path}")
+    # Mostrar solo la ruta relativa desde visualization/export/
+    displayed_path = os.path.join('visualization', 'export', filename)
+    print(f"\nÁrbol exportado en: '{displayed_path}'")

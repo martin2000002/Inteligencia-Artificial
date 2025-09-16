@@ -34,6 +34,7 @@ def dfs_search(initial_state, max_depth=50):
 
     max_depth_result = max(level.values()) if level else 0
     max_width = max(level_count.values()) if level_count else 0
+    visited_count = len(visited)
 
     # Reconstruir camino
     path = []
@@ -44,4 +45,4 @@ def dfs_search(initial_state, max_depth=50):
             current = parent[current]
         path.reverse()
 
-    return path, parent, max_depth_result, max_width
+    return path, parent, max_depth_result, max_width, visited_count

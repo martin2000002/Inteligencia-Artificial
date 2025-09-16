@@ -27,7 +27,7 @@ def euclidean_distance(state: EightTile) -> float:
         distance += ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
     return distance
 
-def best_first_search(initial_state: EightTile, heuristic: Callable[[EightTile], float]) -> Tuple[List[EightTile], Dict[EightTile, Optional[EightTile]], int, int]:
+def best_first_search(initial_state: EightTile, heuristic: Callable[[EightTile], float]) -> Tuple[List[EightTile], Dict[EightTile, Optional[EightTile]], int, int, int]:
     import itertools
     visited = set()
     parent = {}
@@ -59,6 +59,7 @@ def best_first_search(initial_state: EightTile, heuristic: Callable[[EightTile],
                 level_count[current_level + 1] += 1
     max_depth = max(level.values()) if level else 0
     max_width = max(level_count.values()) if level_count else 0
+    visited_count = len(visited)
     path = []
     if solution_found:
         current = goal_state
@@ -66,7 +67,7 @@ def best_first_search(initial_state: EightTile, heuristic: Callable[[EightTile],
             path.append(current)
             current = parent[current]
         path.reverse()
-    return path, parent, max_depth, max_width
+    return path, parent, max_depth, max_width, visited_count
 
 # Diccionario para seleccionar heurística fácilmente
 def get_heuristic(name: str) -> Callable[[EightTile], float]:

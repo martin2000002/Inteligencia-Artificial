@@ -11,59 +11,51 @@ if __name__ == "__main__":
     board = EightTile(initial, goal)
     print("Estado inicial:")
     print(board)
+    print("\nEstado objetivo:")
+    print(EightTile(goal, goal))
 
-    print("\nBuscando solución con BFS...")
-    path_bfs, parent_bfs, max_depth_bfs, max_width_bfs = bfs_search(board)
+
+    SUMMARY_TEMPLATE = "Movimientos para solución = {moves}\nProfundidad = {depth}\nAncho = {width}\nEstados visitados = {visited}"
+
+    TITLE_TEMPLATE = "{method}:"
+
+    NO_SOLUTION_MSG = "No se encontró solución."
+
+    def print_boxed_title(method_name: str):
+        title = TITLE_TEMPLATE.format(method=method_name)
+        sep = '-' * len(title)
+        print('\n' + sep)
+        print(title)
+        print(sep)
+
+    print_boxed_title("Breadth First Search")
+    path_bfs, parent_bfs, max_depth_bfs, max_width_bfs, visited_bfs = bfs_search(board)
     if path_bfs:
-        print(f"\n¡Solución BFS encontrada en {len(path_bfs)-1} movimientos!")
-        print("Profundidad del árbol generado:", max_depth_bfs)
-        print("Ancho máximo del árbol:", max_width_bfs)
-        print("Estados del camino solución:")
-        for state in path_bfs:
-            print(state)
-            print("-" * 8)
-        export_search_tree(parent_bfs, path_bfs, "bfs_tree.graphml")
+        print(SUMMARY_TEMPLATE.format(moves=len(path_bfs)-1, depth=max_depth_bfs, width=max_width_bfs, visited=visited_bfs))
+        export_search_tree(parent_bfs, path_bfs, "breadth_first_search.graphml")
     else:
-        print("No se encontró solución con BFS.")
+        print(NO_SOLUTION_MSG)
 
-    print("\nBuscando solución con DFS...")
-    path_dfs, parent_dfs, max_depth_dfs, max_width_dfs = dfs_search(board)
+    print_boxed_title("Depth First Search")
+    path_dfs, parent_dfs, max_depth_dfs, max_width_dfs, visited_dfs = dfs_search(board)
     if path_dfs:
-        print(f"\n¡Solución DFS encontrada en {len(path_dfs)-1} movimientos!")
-        print("Profundidad del árbol generado:", max_depth_dfs)
-        print("Ancho máximo del árbol:", max_width_dfs)
-        print("Estados del camino solución:")
-        for state in path_dfs:
-            print(state)
-            print("-" * 8)
-        export_search_tree(parent_dfs, path_dfs, "dfs_tree.graphml")
+        print(SUMMARY_TEMPLATE.format(moves=len(path_dfs)-1, depth=max_depth_dfs, width=max_width_dfs, visited=visited_dfs))
+        export_search_tree(parent_dfs, path_dfs, "depth_first_search.graphml")
     else:
-        print("No se encontró solución con DFS.")
+        print(NO_SOLUTION_MSG)
 
-    # Best First Search con heurística seleccionable
     heuristics = {
         'misplaced': 'Número de baldosas bien ubicadas',
         'manhattan': 'Distancia Manhattan',
         'euclidean': 'Distancia Euclideana'
     }
-    print("\nSeleccione heurística para Best First Search:")
     for key, desc in heuristics.items():
-        print(f"  {key}: {desc}")
-    selected = input("Ingrese heurística (misplaced/manhattan/euclidean): ").strip().lower()
-    if selected not in heuristics:
-        print("Heurística no válida. Usando 'misplaced' por defecto.")
-        selected = 'misplaced'
-    heuristic_fn = get_heuristic(selected)
-    print(f"\nBuscando solución con Best First Search usando '{heuristics[selected]}'...")
-    path_best, parent_best, max_depth_best, max_width_best = best_first_search(board, heuristic_fn)
-    if path_best:
-        print(f"\n¡Solución Best First Search encontrada en {len(path_best)-1} movimientos!")
-        print("Profundidad del árbol generado:", max_depth_best)
-        print("Ancho máximo del árbol:", max_width_best)
-        print("Estados del camino solución:")
-        for state in path_best:
-            print(state)
-            print("-" * 8)
-        export_search_tree(parent_best, path_best, f"best_first_{selected}_tree.graphml")
-    else:
-        print("No se encontró solución con Best First Search.")
+        print_boxed_title(f"Best First Search ({desc})")
+        heuristic_fn = get_heuristic(key)
+        path_bf, parent_bf, max_depth_bf, max_width_bf, visited_bf = best_first_search(board, heuristic_fn)
+        if path_bf:
+            print(SUMMARY_TEMPLATE.format(moves=len(path_bf)-1, depth=max_depth_bf, width=max_width_bf, visited=visited_bf))
+            export_search_tree(parent_bf, path_bf, f"best_first_search_{key}.graphml")
+        else:
+            print(NO_SOLUTION_MSG)
+    print()

@@ -137,7 +137,7 @@ def export_search_tree(parent_dict, solution_path, filename="bfs_tree.graphml"):
         G.add_edge(src, dst, color=edge_color)
 
     import os
-    export_dir = os.path.join('Deber 2', 'ejercicio 1', 'visualization', 'export')
+    export_dir = os.path.join('Deber 2', 'ejercicio_1', 'visualization', 'export')
     os.makedirs(export_dir, exist_ok=True)
     export_path = os.path.join(export_dir, filename)
     nx.write_graphml(G, export_path)

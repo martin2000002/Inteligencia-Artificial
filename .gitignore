@@ -1,0 +1,17 @@
+# Ignore Python bytecode caches
+__pycache__/
+**/__pycache__/
+
+# Ignore compiled Python files
+*.py[cod]
+*$py.class
+
+# Optional: ignore virtual environments
+venv/
+.env/
+
+# Ignore editor/temp files
+*.swp
+*.swo
+.DS_Store
+*.log

@@ -1,5 +1,3 @@
-from collections import deque
-
 # Estado como tupla (F, W, G, C): 0 = izquierda, 1 = derecha
 START = (0, 0, 0, 0)
 GOAL = (1, 1, 1, 1)
@@ -36,34 +34,31 @@ def neighbors(state):
         if is_safe(new_state):
             yield new_state, carry
 
-def bfs():
-    q = deque([START])
-    visited = {START}
-    parent = {START: None}
-    move_taken = {START: None}
-    while q:
-        s = q.popleft()
-        if s == GOAL:
-            return reconstruct(parent, move_taken, s)
-        for ns, carry in neighbors(s):
-            if ns not in visited:
-                visited.add(ns)
-                parent[ns] = s
-                move_taken[ns] = carry
-                q.append(ns)
+# --- Backtracking (DFS) en lugar de BFS ---
+
+def dfs_backtracking(start: tuple = START, goal: tuple = GOAL):
+    """Retorna una ruta desde start a goal usando backtracking (DFS).
+    Formato de salida: lista de (state, move), comenzando con (start, None).
+    Nota: No garantiza mínimos pasos.
+    """
+    visited = {start}
+    path = [(start, None)]
+    return _dfs(start, goal, visited, path)
+
+def _dfs(state: tuple, goal: tuple, visited: set, path: list):
+    if state == goal:
+        return path
+    for ns, carry in neighbors(state):
+        if ns in visited:
+            continue
+        visited.add(ns)
+        res = _dfs(ns, goal, visited, path + [(ns, carry)])
+        if res is not None:
+            return res
+        visited.remove(ns)
     return None
 
-def reconstruct(parent, move_taken, goal):
-    states = []
-    moves = []
-    s = goal
-    while s is not None:
-        states.append(s)
-        moves.append(move_taken[s])
-        s = parent[s]
-    states.reverse()
-    moves.reverse()
-    return list(zip(states, moves))  # (state, move) por paso; primer move es None
+# --- Salida y utilidades ---
 
 def format_banks(state):
     left = [NAMES_ES[i] for i, side in enumerate(state) if side == 0]
@@ -80,11 +75,11 @@ def describe_move(prev, carry):
     return f"El Granjero lleva la {name} ({direction})"
 
 def main():
-    solution = bfs()
+    solution = dfs_backtracking()
     if not solution:
         print("No se encontró solución.")
         return
-    print("Solución (pasos mínimos):")
+    print("Solución (backtracking):")
     # Imprime estado inicial
     print(f"Paso 0: Estado inicial")
     print(format_banks(solution[0][0]))

@@ -35,27 +35,35 @@ move(state(F,W,G,C), state(F1,W,G,C1), farmer_cabbage) :-
     F = C, opp(F, F1), opp(C, C1),
     safe(state(F1,W,G,C1)).
 
-% Envoltura sin acción para facilitar el BFS
+% Envoltura sin acción para facilitar el uso con dfs/bfs
 move(State, Next) :- move(State, Next, _).
 
-% BFS que retorna un camino mínimo (lista de estados desde inicio a meta)
+% --- Backtracking (DFS) ---
+% Encuentra una ruta cualquiera desde start a goal (no garantiza mínimos pasos)
 solve(Path) :-
     start(S), goal(G),
-    bfs([[S]], G, [S], RevPath),
-    reverse(RevPath, Path).
+    dfs(S, G, [S], Path).
 
-bfs([[Goal|Rest]|_], Goal, _, [Goal|Rest]).
-bfs([[Node|Path]|Queue], Goal, Visited, Solution) :-
-    findall([Next,Node|Path],
-            ( move(Node, Next, _),
-              \+ member(Next, [Node|Path]),
-              \+ member(Next, Visited)
-            ),
-            Children),
-    heads(Children, NextStates),
-    append(Visited, NextStates, Vis2),
-    append(Queue, Children, Queue2),
-    bfs(Queue2, Goal, Vis2, Solution).
+dfs(State, Goal, _, [State]) :-
+    State = Goal, !.
+dfs(State, Goal, Visited, [State|Path]) :-
+    move(State, Next),
+    \+ member(Next, Visited),
+    dfs(Next, Goal, [Next|Visited], Path).
+
+% --- (BFS sin uso, dejado para referencia) ---
+% bfs([[Goal|Rest]|_], Goal, _, [Goal|Rest]).
+% bfs([[Node|Path]|Queue], Goal, Visited, Solution) :-
+%     findall([Next,Node|Path],
+%             ( move(Node, Next, _),
+%               \+ member(Next, [Node|Path]),
+%               \+ member(Next, Visited)
+%             ),
+%             Children),
+%     heads(Children, NextStates),
+%     append(Visited, NextStates, Vis2),
+%     append(Queue, Children, Queue2),
+%     bfs(Queue2, Goal, Vis2, Solution).
 
 % Extrae las cabezas de una lista de listas
 heads([], []).
@@ -101,7 +109,7 @@ print_move(state(F,W1,G1,C1), state(_,W2,G2,C2)) :-
 % Imprime la solución paso a paso
 print_solution(Path) :-
     Path = [First|_],
-    writeln('Solucion (pasos minimos):'),
+    writeln('Solucion (backtracking):'),
     writeln('Paso 0: Estado inicial'),
     print_state(First),
     print_steps(1, Path).
@@ -114,7 +122,7 @@ print_steps(N, [Prev,Next|Rest]) :-
     N1 is N+1,
     print_steps(N1, [Next|Rest]).
 
-% Punto de entrada (se ejecuta al cargar con swipl -s fwgc_solver.pl)
+% Punto de entrada (se ejecuta al cargar con swipl -q -s fwgc_solver.pl)
 run :-
     ( solve(Path) ->
         print_solution(Path),

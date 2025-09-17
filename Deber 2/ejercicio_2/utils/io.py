@@ -38,7 +38,7 @@ def write_solutions_text(
     filename_prefix: str,
     limit: int | None = None,
 ) -> None:
-    out_dir = "Deber 2/ejercicio_2/visualization/export"
+    out_dir = "Deber 2/ejercicio_2/visualization"
     ensure_dir(out_dir)
     # 1) absolute positions file
     abs_path = os.path.join(out_dir, f"{filename_prefix}_absolute.txt")

@@ -62,12 +62,11 @@ dfs(State, Goal, Visited, [State|Path]) :-
 bank_str(0,0, '-') :- !.
 bank_str(M, C, Str) :- format(string(Str), '~dM, ~dC', [M, C]).
 
-print_state(state(Ml, Cl, B)) :-
+print_state(state(Ml, Cl, _B)) :-
     Mr is 3 - Ml, Cr is 3 - Cl,
     bank_str(Ml, Cl, LStr),
     bank_str(Mr, Cr, RStr),
-    ( B == l -> Side = 'IZQ' ; Side = 'DER' ),
-    format('IZQ: ~w | DER: ~w | Bote: ~w~n', [LStr, RStr, Side]).
+    format('IZQ: ~w | DER: ~w~n', [LStr, RStr]).
 
 print_move(state(Ml1, Cl1, B1), state(Ml2, Cl2, _)) :-
     ( B1 == l -> Dir = 'izquierda -> derecha', M is Ml1 - Ml2, C is Cl1 - Cl2

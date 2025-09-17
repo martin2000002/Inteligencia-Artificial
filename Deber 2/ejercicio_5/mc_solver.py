@@ -72,8 +72,7 @@ def bank_str(m, c):
 def format_state(state):
     m_left, c_left, boat = state
     m_right, c_right = 3 - m_left, 3 - c_left
-    side = "IZQ" if boat == 0 else "DER"
-    return f"IZQ: {bank_str(m_left, c_left)} | DER: {bank_str(m_right, c_right)} | Bote: {side}"
+    return f"IZQ: {bank_str(m_left, c_left)} | DER: {bank_str(m_right, c_right)}"
 
 
 def describe_move(prev, move):

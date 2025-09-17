@@ -1,0 +1,297 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://example.org/inteligencia-artificial/tarea1"
+         xmlns="http://example.org/inteligencia-artificial/tarea1#">
+
+<owl:Ontology rdf:about="http://example.org/inteligencia-artificial/tarea1"/>
+
+<owl:ObjectProperty rdf:about="#tieneEjercicio">
+  <rdfs:domain rdf:resource="#Asignacion"/>
+  <rdfs:range rdf:resource="#Ejercicio"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#modelaProblema">
+  <rdfs:domain rdf:resource="#Ejercicio"/>
+  <rdfs:range rdf:resource="#Problema"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#usaAlgoritmo">
+  <rdfs:domain rdf:resource="#Ejercicio"/>
+  <rdfs:range rdf:resource="#Algoritmo"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#usaHeuristica">
+  <rdfs:domain rdf:resource="#Ejercicio"/>
+  <rdfs:range rdf:resource="#Heuristica"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#requiereLenguaje">
+  <rdfs:domain rdf:resource="#Ejercicio"/>
+  <rdfs:range rdf:resource="#Lenguaje"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#produceArtefacto">
+  <rdfs:domain rdf:resource="#Ejercicio"/>
+  <rdfs:range rdf:resource="#Artefacto"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#tieneRestriccion">
+  <rdfs:domain rdf:resource="#Problema"/>
+  <rdfs:range rdf:resource="#Restriccion"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#tieneEstadoInicial">
+  <rdfs:domain rdf:resource="#Problema"/>
+  <rdfs:range rdf:resource="#Estado"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#tieneEstadoObjetivo">
+  <rdfs:domain rdf:resource="#Problema"/>
+  <rdfs:range rdf:resource="#Estado"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#visualizaCon">
+  <rdfs:domain rdf:resource="#Ejercicio"/>
+  <rdfs:range rdf:resource="#Herramienta"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#verifica">
+  <rdfs:domain rdf:resource="#Ejercicio"/>
+  <rdfs:range rdf:resource="#Ejercicio"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#formatoSerializacion">
+  <rdfs:domain rdf:resource="#Artefacto"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#Asignacion">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Ejercicio">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Problema">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Rompecabezas">
+  <rdfs:subClassOf rdf:resource="#Problema"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Juego">
+  <rdfs:subClassOf rdf:resource="#Problema"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ProblemaLogico">
+  <rdfs:subClassOf rdf:resource="#Problema"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Algoritmo">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#AlgoritmoBusqueda">
+  <rdfs:subClassOf rdf:resource="#Algoritmo"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Estrategia">
+  <rdfs:subClassOf rdf:resource="#Algoritmo"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Heuristica">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Herramienta">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Lenguaje">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Artefacto">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Estado">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Restriccion">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#Tarea1">
+  <rdf:type rdf:resource="#Asignacion"/>
+  <tieneEjercicio rdf:resource="#E1_OchoFichas"/>
+  <tieneEjercicio rdf:resource="#E2_NReinas"/>
+  <tieneEjercicio rdf:resource="#E3_CuatroEnRaya"/>
+  <tieneEjercicio rdf:resource="#E4a_FWGC"/>
+  <tieneEjercicio rdf:resource="#E4b_MisionerosCanibales"/>
+  <tieneEjercicio rdf:resource="#E5_Verificacion"/>
+  <tieneEjercicio rdf:resource="#E6_RedesSemanticas"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tarea I</rdfs:label>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Protege">
+  <rdf:type rdf:resource="#Herramienta"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protégé</rdfs:label>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Python">
+  <rdf:type rdf:resource="#Lenguaje"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Prolog">
+  <rdf:type rdf:resource="#Lenguaje"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BusquedaEnAmplitud">
+  <rdf:type rdf:resource="#AlgoritmoBusqueda"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BusquedaEnProfundidad">
+  <rdf:type rdf:resource="#AlgoritmoBusqueda"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MejorPrimero">
+  <rdf:type rdf:resource="#AlgoritmoBusqueda"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Backtracking">
+  <rdf:type rdf:resource="#Estrategia"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#DistanciaManhattan">
+  <rdf:type rdf:resource="#Heuristica"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#DistanciaEuclidiana">
+  <rdf:type rdf:resource="#Heuristica"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BaldosasCorrectas">
+  <rdf:type rdf:resource="#Heuristica"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#E1_OchoFichas">
+  <rdf:type rdf:resource="#Ejercicio"/>
+  <modelaProblema rdf:resource="#P_OchoFichas"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8-Tile</rdfs:label>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#P_OchoFichas">
+  <rdf:type rdf:resource="#Rompecabezas"/>
+  <tieneEstadoInicial rdf:resource="#E1_Inicial"/>
+  <tieneEstadoObjetivo rdf:resource="#E1_Objetivo"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#E1_Inicial">
+  <rdf:type rdf:resource="#Estado"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#E1_Objetivo">
+  <rdf:type rdf:resource="#Estado"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#E2_NReinas">
+  <rdf:type rdf:resource="#Ejercicio"/>
+  <modelaProblema rdf:resource="#P_NReinas"/>
+  <usaAlgoritmo rdf:resource="#Backtracking"/>
+  <requiereLenguaje rdf:resource="#Python"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#P_NReinas">
+  <rdf:type rdf:resource="#Rompecabezas"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#E3_CuatroEnRaya">
+  <rdf:type rdf:resource="#Ejercicio"/>
+  <modelaProblema rdf:resource="#P_CuatroEnRaya"/>
+  <usaAlgoritmo rdf:resource="#MejorPrimero"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#P_CuatroEnRaya">
+  <rdf:type rdf:resource="#Juego"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#E4a_FWGC">
+  <rdf:type rdf:resource="#Ejercicio"/>
+  <modelaProblema rdf:resource="#P_FWGC"/>
+  <usaAlgoritmo rdf:resource="#Backtracking"/>
+  <requiereLenguaje rdf:resource="#Prolog"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#P_FWGC">
+  <rdf:type rdf:resource="#ProblemaLogico"/>
+  <tieneEstadoInicial rdf:resource="#FWGC_Inicial"/>
+  <tieneEstadoObjetivo rdf:resource="#FWGC_Objetivo"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#NoLoboConCabraSinGranjero">
+  <rdf:type rdf:resource="#Restriccion"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#NoCabraConColSinGranjero">
+  <rdf:type rdf:resource="#Restriccion"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#FWGC_Inicial">
+  <rdf:type rdf:resource="#Estado"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#FWGC_Objetivo">
+  <rdf:type rdf:resource="#Estado"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#E4b_MisionerosCanibales">
+  <rdf:type rdf:resource="#Ejercicio"/>
+  <modelaProblema rdf:resource="#P_MisionerosCanibales"/>
+  <usaAlgoritmo rdf:resource="#Backtracking"/>
+  <requiereLenguaje rdf:resource="#Prolog"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#P_MisionerosCanibales">
+  <rdf:type rdf:resource="#ProblemaLogico"/>
+  <tieneRestriccion rdf:resource="#NoCanibalesSuperanMisioneros"/>
+  <tieneEstadoInicial rdf:resource="#MC_Inicial"/>
+  <tieneEstadoObjetivo rdf:resource="#MC_Objetivo"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#NoCanibalesSuperanMisioneros">
+  <rdf:type rdf:resource="#Restriccion"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MC_Inicial">
+  <rdf:type rdf:resource="#Estado"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MC_Objetivo">
+  <rdf:type rdf:resource="#Estado"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#E5_Verificacion">
+  <rdf:type rdf:resource="#Ejercicio"/>
+  <requiereLenguaje rdf:resource="#Python"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#E6_RedesSemanticas">
+  <rdf:type rdf:resource="#Ejercicio"/>
+  <visualizaCon rdf:resource="#Protege"/>
+  <produceArtefacto rdf:resource="#OntologiaOWL"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#OntologiaOWL">
+  <rdf:type rdf:resource="#Artefacto"/>
+  <formatoSerializacion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RDF/XML (OWL)</formatoSerializacion>
+</owl:NamedIndividual>
+
+
+</rdf:RDF>

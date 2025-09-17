@@ -51,20 +51,6 @@ dfs(State, Goal, Visited, [State|Path]) :-
     \+ member(Next, Visited),
     dfs(Next, Goal, [Next|Visited], Path).
 
-% --- (BFS sin uso, dejado para referencia) ---
-% bfs([[Goal|Rest]|_], Goal, _, [Goal|Rest]).
-% bfs([[Node|Path]|Queue], Goal, Visited, Solution) :-
-%     findall([Next,Node|Path],
-%             ( move(Node, Next, _),
-%               \+ member(Next, [Node|Path]),
-%               \+ member(Next, Visited)
-%             ),
-%             Children),
-%     heads(Children, NextStates),
-%     append(Visited, NextStates, Vis2),
-%     append(Queue, Children, Queue2),
-%     bfs(Queue2, Goal, Vis2, Solution).
-
 % Extrae las cabezas de una lista de listas
 heads([], []).
 heads([[H|_]|T], [H|HT]) :- heads(T, HT).

@@ -4,7 +4,7 @@ from utils.io import write_solutions_text
 from nqueens.solver import solve_nqueens, solve_nqueens_iter
 
 # Configuración:
-N = 7
+N = 11
 
 def main() -> None:
     n = N

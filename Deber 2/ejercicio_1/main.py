@@ -5,8 +5,8 @@ from search_algorithms.best_first_search import best_first_search, get_heuristic
 from visualization.generator.graphml_export import export_search_tree
 
 if __name__ == "__main__":
-    initial = [1,2,3,0,5,6,4,7,8]
-    goal = [1,2,3,4,5,6,7,8,0]
+    initial = [5,4,2,3,0,8,1,6,7]
+    goal = [5,2,8,3,0,7,1,4,6]
 
     board = EightTile(initial, goal)
     print("Estado inicial:")

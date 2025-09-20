@@ -1,7 +1,3 @@
-# Build ontology for the assignment using OWL (RDF/XML)
-# Ontología en español basada en las instrucciones de la tarea.
-# Requires: pip install owlready2
-
 from pathlib import Path
 from owlready2 import get_ontology, Thing, ObjectProperty, DataProperty
 

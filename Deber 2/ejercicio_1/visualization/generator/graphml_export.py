@@ -1,14 +1,6 @@
 import networkx as nx
 
 def compute_tree_positions(parent_dict, x_spacing=200, y_spacing=120):
-    """
-    Calcula posiciones (x, y) para cada nodo del árbol en forma de pirámide:
-    - Todas las hojas (nodos sin hijos) se recorren en post-order y se les asigna
-      una posición x equidistante.
-    - Cada padre se centra entre sus hijos: x_parent = (min(child_x) + max(child_x)) / 2
-    - Se soportan múltiples raíces.
-    - Se centra horizontalmente el conjunto (centro en x=0).
-    """
     # Construir mapa padres -> hijos y asegurar que cada nodo tiene una entrada
     children_map = {}
     for node in parent_dict:
@@ -96,12 +88,6 @@ def compute_tree_positions(parent_dict, x_spacing=200, y_spacing=120):
     return node_pos
 
 def export_search_tree(parent_dict, solution_path, filename="bfs_tree.graphml"):
-    """
-    Exporta el árbol de búsqueda en formato GraphML.
-    - Los nodos se posicionan en forma de pirámide.
-    - El camino solución se pinta con color específico (nodos y aristas).
-    - Los nodos tienen atributos 'x' y 'y' para disposición jerárquica en Cytoscape.
-    """
     G = nx.DiGraph()
 
     # Definir colores como variables

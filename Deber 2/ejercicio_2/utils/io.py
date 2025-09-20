@@ -4,17 +4,15 @@ import os
 
 Board = List[int]
 
-
 def ensure_dir(path: str) -> None:
     os.makedirs(path, exist_ok=True)
 
-
 def board_to_absolute_positions(board: Board) -> List[int]:
-    """Map a board to absolute positions 1..N^2 as requested in the statement.
+    """Mapea un tablero a posiciones absolutas 1..N^2 como pide el enunciado.
 
-    Board representation: board[row] = col where queen is placed (0-indexed).
-    Absolute numbering (1-indexed) row-major order:
-      position = row * N + col + 1
+    Representación del tablero: board[row] = col donde está la reina (indexado desde 0).
+    Numeración absoluta (indexada desde 1), orden por filas:
+      posición = row * N + col + 1
     """
     n = len(board)
     return [r * n + c + 1 for r, c in enumerate(board)]
@@ -40,9 +38,9 @@ def write_solutions_text(
 ) -> None:
     out_dir = "Deber 2/ejercicio_2/visualization"
     ensure_dir(out_dir)
-    # 1) absolute positions file
+    # 1) archivo con posiciones absolutas
     abs_path = os.path.join(out_dir, f"{filename_prefix}_absolute.txt")
-    # 2) grid visualization file
+    # 2) archivo con visualización en rejilla
     grid_path = os.path.join(out_dir, f"{filename_prefix}_grids.txt")
 
     max_items = len(solutions) if limit is None else min(limit, len(solutions))

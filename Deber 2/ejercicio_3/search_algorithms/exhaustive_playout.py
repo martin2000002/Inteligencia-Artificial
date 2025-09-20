@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import List, Tuple, Optional, Dict, Any
-
-from game.board import BoardArr, Pos, SIZE, empties, next_player, place, winner
+from game.board import BoardArr, Pos, empties, next_player, place, winner
 
 
 def search_any_winner(start: BoardArr) -> Dict[str, Any]:
